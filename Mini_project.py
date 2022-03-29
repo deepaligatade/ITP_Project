@@ -26,15 +26,17 @@ if show == 'Problem Statement':
     st.write(df_client)
 if show=='Solution':
         st.write('Q1. Create a Dictionary of lists to store the information of shipments given in the table')
-        sol= st.button('Show Solution',key=1)
+        sol= st.button('Show Hint',key=1)
         if sol:
-            body = "ship = {101:[1, 3, '14-03-2020','25-03-2020','Area1','Area6','Delivered',198], 102: [4 ,1,'18-06-2020','09-07-2020','Area2','Area4','Delivered',275], 103 :[2,3,'01-12-2020','Null','Area5','Area1','In-Transit',200], 104 :[1,5,'23-06-2020','25-06-2020','Area1','Area4','Delivered',314], 105: [3,4,'29-08-2020','10-09-2020','Area5','Area3','Delivered',275], 106:[5,2,'28-09-2020','Null','Area3','Area1','In-Transit',270] } "
-            st.code(body,language='python')
+            st.write("Dictionary can be created using id as key and list of other data as value")
+            st.write("The first row can be created as follows")
+            st.write("ship = {101:[1, 3, '14-03-2020','25-03-2020','Area1','Area6','Delivered',198],key2:[values for row 2] .......")
+            #st.code(body,language='python')
         st.write('Q2. Create a Dictionary of to store the information of clients given in the table.')
-        sol1= st.button('Show Solution',key=2)
+        sol1= st.button('Show Hint',key=2)
         if sol1:
-            body = "clients = {1:'Phillip',2:'Omega III',3:'Ramya',4:'Romesh',5:'John'} "
-            st.code(body,language='python')
+            st.write("Create the dictionary with key as client_id and value as Client Name")
+            st.write('dict_client = {client_id1:client_name1,client_id2:client_name2......}')
         st.write('Q3. Write a code to replace clients id with their respective name in shipment dictionary using a loop and dictionary comprehension')
         hint = st.button('Show Hint',key=3)
         if hint:
@@ -43,43 +45,36 @@ if show=='Solution':
             st.write(df)
             st.write('Sender and Receiver should be replaced as Phillip and Ramya respectively')
             st.write('Use loop / Dictionary Comprehension')
-        sol2= st.button('Show Solution',key=4)
-        if sol2:
-            body = '''for i in ship:
-                    a,b = ship[i][0],ship[i][1]
-                    ship[i][0]=clients[a]
-                    ship[i][1]=clients[b] '''
-            st.code(body,language='python')
-        sol2= st.button('Show alternate solution',key=5)
-        if sol2:
-            body = "ship1 = {i:[clients[ship[i][0]],clients[ship[i][1]],ship[i][2],ship[i][3],ship[i][4],ship[i][5],ship[i][6]] for i in ship} "
-            st.code(body,language='python')
+        
         
         st.write('Q4. Print all shipment details that are sent by Phillip')
 
-        sol2= st.button('Show Solution',key=6)
+        sol2= st.button('Show Hint',key=6)
         if sol2:
-            body = '''for i in ship:
-        if (ship[i][0] == 'Phillip'):
-            print(ship[i]) '''
-            st.code(body,language='python')
+            st.write("Use the modified dictionary of Question 3")
+            st.write("Use loops to check Phillip in the sender data")
+            st.write("The expected output is")
+            st.write("['Phillip', 'Ramya', '14-03-2020', '25-03-2020', 'Area1', 'Area6', 'Delivered']",
+"['Phillip', 'John', '23-06-2020', '25-06-2020', 'Area1', 'Area4', 'Delivered']",sep = '\n')
         st.write('Q5. Print all shipment details that are received by Ramya')
 
-        sol2= st.button('Show Solution',key=7)
+        sol2= st.button('Show Hint',key=7)
         if sol2:
-            body = '''for i in ship:
-    if (ship[i][1] == 'Ramya'):
-        print(ship[i]) '''
-            st.code(body,language='python')
+            st.write("Use the modified dictionary of Question 3")
+            st.write("Use loops to check Ramya in the receiver data")
+            st.write("The expected output is")
+            st.write("['Phillip', 'Ramya', '14-03-2020', '25-03-2020', 'Area1', 'Area6', 'Delivered']",
+ "['Omega III', 'Ramya', '01-12-2020', 'Null', 'Area5', 'Area1', 'In-Transit']",sep='\n')
         
         st.write('Q6. Print all shipments which are in "In-Transit" status')
 
-        sol2= st.button('Show Solution',key=8)
+        sol2= st.button('Show Hint',key=8)
         if sol2:
-            body = ''' for i in ship:
-    if (ship[i][6] == 'In-Transit'):
-        print(ship[i]) '''
-            st.code(body,language='python')
+            st.write("Use the modified dictionary of Question 3")
+            st.write("Use loops to check 'In Transit' in the status")
+            st.write("The expected output is")
+            st.write("['Omega III', 'Ramya', '01-12-2020', 'Null', 'Area5', 'Area1', 'In-Transit']",
+"['John', 'Omega III', '28-09-2020', 'Null', 'Area3', 'Area1', 'In-Transit']",sep='\n')
         
         st.write('Q7. Print all shipments which are delivered within 7 days of courier Start date')
         hint = st.button('Show Hint',key=9)
@@ -101,19 +96,8 @@ for i in ship:
         hint = st.button('Show Hint',key=11)
         if hint:
             st.write('Use Datetime library')
-        sol2= st.button('Show Solution',key=12)
-        if sol2:
-            body = '''import datetime as dt
-for i in ship:
-    if (ship[i][3] == 'Null'):
-        print(ship[i])
-    else:
-        start = dt.datetime.strptime(ship[i][2], "%d-%m-%Y")
-        end = dt.datetime.strptime(ship[i][3], "%d-%m-%Y")
-        if (end-start) > dt.timedelta(days = 15):
-            print(ship[i]) '''
-            st.code(body,language='python')
-
+            st.write("Convert the date related data i.e. 'start date' and 'delivery date' to date data type")
+            st.write("Use timedelta for calculating date difference")
         st.write('Q9. Graph is used to represent networks of pickup and delivery area. Consider a below the graph diagram for given area locations in the table.')
         st.write('Sender location and receiver location is representated by node with area number.')
         st.write('Connection between two nodes shows route exists between those areas. E.g there exists a path from area 1 to area 2 but there is no direct route between area1 and area5.')
@@ -133,41 +117,14 @@ for i in ship:
         if hint:
             st.write('The adjacency matrix can be stored as nested list.')
             st.write('Finding all routes can be written as recursive function ')
-        sol2= st.button('Show Solution',key=17)
-        if sol2:
-            st.write('Recursive Function for route finding')
-            body = '''def find_all_routes(matrix,u,d,visited,path):     
-        visited[u]= True
-        path.append(u+1) 
-        if u == d: 
-            print(path) 
-        else: 
-             
-            for i in range(6):
-                if matrix[u][i] == 1 and (visited[i]== False): 
-                    find_all_routes(matrix,i, d, visited, path) 
-                    ## for j in range(6):
-                            if matrix[i][j] 
-       
-        path.pop() ## Dealing with dead ends
-        visited[u]= False '''
-            st.code(body,language='python')
-            st.write('Creation of adjacency matrix and initialisation of data')
-            body = '''matrix = [[0,1,0,0,0,1],[1,0,1,1,0,0],[0,1,0,1,0,0],[0,1,1,0,1,0],[0,0,0,1,0,0],[1,0,0,0,0,0]] ## Nested list
-visited=[False for i in range(6)]
-path = []'''
-            st.code(body,language='python')
-            st.write('Calling the recrsive function for all sender and receiver')
-            body = '''def Show_all(ship):
-    for i in ship:
-        print('Shipment Id: ',i)
-        s = int(ship[i][4][-1])
-        print("Sender's Location" , s)
-        r = int(ship[i][5][-1])
-        print("Receiver's Location" , r)
-        print('All possible routes : ')
-        find_all_routes(matrix,s-1,r-1,visited,path)
-        print('-----------------------------------')
-        
-Show_all(ship)'''
-            st.code(body,language ='python')
+            st.write('Keep track of places that are already visited to confirm that no place is visited repeatedly')
+            st.write('Use appropriate Graph traversal method to find the paths')
+        graphs =st.button("More about Graphs",key=17)
+        if graphs:
+            st.write(' Graphs are mathematical concepts that have found many uses in computer science. Graphs come in many different flavors, many of which have found uses in computer programs. ')
+            st.write('Some flavors are: Simple graph, Undirected or directed graphs, Cyclic or acyclic graphs, labeled graphs, Weighted graphs, Infinite graphs, ... and many more too numerous to mention.')
+            #st.write('Most graphs are defined as a slight alteration of the following rules. A graph is made up of two sets called Vertices and Edges.')
+            st.write('The Vertices are drawn from some underlying type, and the set may be finite or infinite. Each element of the Edge set is a pair consisting of two elements from the Vertices set.')
+            st.write('Graphs are often depicted visually, by drawing the elements of the Vertices set as boxes or circles, and drawing the elements of the edge set as lines or arcs between the boxes or circles.')
+            st.write(' There is an arc between v1 and v2 if (v1,v2) is an element of the Edge set. Adjacency: If (u,v) is in the edge set we say u is adjacent to v (which we sometimes write as u ~ v).')
+                              
