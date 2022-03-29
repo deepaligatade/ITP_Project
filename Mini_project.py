@@ -80,17 +80,8 @@ if show=='Solution':
         hint = st.button('Show Hint',key=9)
         if hint:
             st.write('Use Datetime library')
-        sol2= st.button('Show Solution',key=10)
-        if sol2:
-            body = '''import datetime as dt
-for i in ship:
-    if (ship[i][3] != 'Null'):
-        start = dt.datetime.strptime(ship[i][2], "%d-%m-%Y")
-        end = dt.datetime.strptime(ship[i][3], "%d-%m-%Y")
-        if (end-start)<= dt.timedelta(days=7):
-            print(ship[i])
-   '''
-            st.code(body,language='python')
+            st.write("Convert the date related data i.e. 'start date' and 'delivery date' to date data type")
+            st.write("Use timedelta for calculating date difference")
         
         st.write('Q8. Print all shipments which are delivered after 15 days of courier start date or not yet been delivered.')
         hint = st.button('Show Hint',key=11)
